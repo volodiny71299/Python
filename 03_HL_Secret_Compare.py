@@ -17,7 +17,7 @@ correct = u"\u001b[32m\nCongratulations! You guessed the secret number.\u001b[0m
 
 # ===
 
-secret = random.randrange(0, 101)
+secret = random.randrange(1, 10)
 print(secret)
 guess = ""
 

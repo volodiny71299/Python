@@ -55,5 +55,3 @@ if guess == secret:
 else:
     print("You have no more guesses left\n"
           "The correct number was {}".format(secret))
-
-

@@ -3,11 +3,11 @@
 # To Do
 # Set up Game Play list with each round's results
 # Set up average, best and worst scores (see 09a Stats_experiment)
-
+from builtins import print
 
 secret = 7
 guesses_allowed = 4
-rounds = int(input(u"\u001b[35mHow many rounds would you like to play? "))
+rounds = int(input("Rounds: "))
 game_stats = []
 
 num_won = 0
@@ -19,34 +19,34 @@ while rounds_played < rounds:
 
     while guess != secret and guesses_left >= 1:
 
-        guess = int(input(u"\u001b[32mGuess: "))
+        guess = int(input("Guess: "))
         guesses_left -= 1
 
         if guesses_left >= 1:
 
             if guess < secret:
-                print(u"\u001b[31mToo low, try a higher number. Guesses left: {}\n".format(guesses_left))
+                print("Too low, try a higher number. Guesses left: {}\n".format(guesses_left))
 
             elif guess > secret:
-                print(u"\u001b[31mToo high, try a lower number. Guesses left: {}\n".format(guesses_left))
+                print("Too high, try a lower number. Guesses left: {}\n".format(guesses_left))
 
         else:
             if guess < secret:
-                print(u"\u001b[31mToo low!\n")
+                print("Too low!\n")
 
             if guess > secret:
-                print(u"\u001b[31mToo high!\n")
+                print("Too high!\n")
 
     if guess == secret:
         if guesses_left == guesses_allowed - 1:
-            print(u"\u001b[33mAmazing! You guessed the secret number on the first try\u001b[m")
+            print("Amazing! You guessed the secret number on the first try")
 
         else:
-            print(u"\u001b[33mWell done, you got it in {} guesses\u001b[m".format(guesses_allowed - guesses_left))
+            print("Well done, you got it in {} guesses".format(guesses_allowed - guesses_left))
         num_won += 1
 
     else:
-        print(u"\u001b[31mSorry - you lose this round as you have run out of guesses\u001b[m")
+        print("Sorry - you lose this round as you have run out of guesses")
 
     game_stats.append(guesses_allowed - guesses_left)
     print("Won: {} \t | \t Lost: {}\n".format(num_won, rounds_played - num_won + 1))
@@ -61,11 +61,11 @@ for item in game_stats:
 
     # indicates if game has been won or lost
 
-    if item > guesses_allowed:
-        status = "lost"
+    if item <= guesses_allowed:
+        status = "won"
 
     else:
-        status = "won"
+        status = "lost"
 
     print("Round {}: {} ({})".format(list_count, item, status))
     list_count += 1
@@ -80,8 +80,8 @@ worst = game_stats[-1]
 
 average = sum(game_stats)/len(game_stats)
 
-print()
-print("*** Summary Statistics ***\n")
-print("Best: {}\n".format(best))
-print("Worst: {}\n".format(worst))
-print("Average: {:.2f}".format(average))
+# print()
+# print("*** Summary Statistics ***\n")
+# print("Best: {}".format(best))
+# print("Worst: {}".format(worst))
+# print("Average: {:.2f}".format(average))
