@@ -1,7 +1,11 @@
 # Higher or lower game
 # Format for guess info
 
+# GK: Random import statement moved from inside 'keep going' loop to the top of the code.
+import random
 
+# GK: function adds in a row of the decorative character above and below
+# the statement to make the statement stand out.
 def h1_statement(statement, char):
     # print()
     print(char * len(statement))
@@ -10,9 +14,8 @@ def h1_statement(statement, char):
     print()
 
 
-# Makes sure guess is in range of min and max (1 and 10)
-
-
+# GK: Integer checking function that checks input is an integer between 'low'
+# and 'high' (question is repeated until valid data is inputted).
 def int_check(question, low, high):
     valid = False
     while not valid:
@@ -28,17 +31,15 @@ def int_check(question, low, high):
         except ValueError:
             print("Please Enter An Integer.\n")
 
-# Start of keep going loop
 
-
+# GK: Main Routine starts here...
 keep_going = ""
 while keep_going == "":
-
-    import random
 
     # Defines low and high values
     LOW = 1
     HIGH = 10
+    already_guessed = []    # List to hold numbers that have been guessed (use to prevent duplicate guesses)
 
     # Statement that tells you to guess a number in between of low and high
     h1_statement("Guess The Secret Number between {} and {}".format(LOW, HIGH), "*")
@@ -49,10 +50,17 @@ while keep_going == "":
     import math
 
     # Generates amount of guesses based on LOW & HIGH amount
+    
+    # GK: Find range of numbers between the high and low number
     guesses = HIGH - LOW + 1
-    already_guessed = []
+    
+    # GK: Calculate maximum number of guesses needed if a binary search algorithm is used.
     max_raw = math.log2(guesses)
+    
+    # GK: Round number of guesses up 
     max_upped = math.ceil(max_raw)
+    
+    # GK: Add one to number of guesses in case users make a mistake
     max_guesses = max_upped + 1
     h1_statement("You have {} Guesses".format(max_guesses), "*")
     round_number = 1
